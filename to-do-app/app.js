@@ -1,6 +1,7 @@
 var express = require('express');
 const bodyParser = require('body-parser');
 var app = express();
+
 app.use(bodyParser.json());
 
 let items = [];
@@ -85,6 +86,9 @@ checkCompleteBody = (req) => {
     return req.body.id && req.body.description && req.body.checked != undefined
 }
 
-app.listen(8080, function () {
+const server = app.listen(8080, function () {
     console.log('TO-DO APP running at port 8080!');
+    app.emit("server_started_up");
 });
+
+module.exports = server;

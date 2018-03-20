@@ -2,9 +2,9 @@
   "name": "to-do-app",
   "version": "1.0.0",
   "description": "BDD Unit Testing and Integration Testing.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node app.js",
     "test": "mocha",
     "stop": "killall node"
   },

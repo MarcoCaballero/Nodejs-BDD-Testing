@@ -1,0 +1,40 @@
+{
+  "name": "to-do-app",
+  "version": "1.0.0",
+  "description": "BDD Unit Testing and Integration Testing.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha",
+    "stop": "killall node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcoCaballero/Nodejs-BDD-Testing.git"
+  },
+  "keywords": [
+    "Testing",
+    "Node.js",
+    "Mocha",
+    "Chai",
+    "Chai-http",
+    "BDD",
+    "REST"
+  ],
+  "author": "Marco Caballero, Alejandro G. Badillo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MarcoCaballero/Nodejs-BDD-Testing/issues"
+  },
+  "homepage": "https://github.com/MarcoCaballero/Nodejs-BDD-Testing#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "eslint": "^4.19.0",
+    "mocha": "^5.0.4"
+  }
+}

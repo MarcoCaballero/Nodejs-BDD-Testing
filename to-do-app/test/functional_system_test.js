@@ -123,12 +123,12 @@ describe('To-Do Items App BDD Testing with \'expect\' ', () => {
     });
 
     describe('- Given an empty array of items \n    - When \'GET /items\' is launched', () => {
-        it('Then Should return an empty array of items', (done) => {
+        it('Then Should return an empty array of items (Should assertions version)', (done) => {
             chai.request(BASE_URL)
                 .get('/items')
                 .end((err, res) => {
-                    expect(res).to.have.status(200).and.to.be.json;
-                    expect(res.body).to.deep.equal([]);
+                    res.should.have.status(200).and.to.be.json;
+                    res.body.should.be.deep.equal([]);
                     done();
                 });
         });

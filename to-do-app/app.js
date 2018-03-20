@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const ApiController = require('./controller/api.controller');
 
 const app = express();
+
 app.use(bodyParser.json());
 
 app.get('/items', ApiController.get_items);

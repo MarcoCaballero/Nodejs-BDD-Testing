@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "test": "mocha",
+    "test_nft": "artillery run test/artillery.yml",
     "stop": "killall node"
   },
   "repository": {
@@ -32,6 +33,7 @@
     "express": "^4.16.3"
   },
   "devDependencies": {
+    "artillery": "^1.6.0-14",
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
     "eslint": "^4.19.0",

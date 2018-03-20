@@ -1,11 +1,14 @@
 'use strict';
 
-const BAD_REQUEST_MSG = { statusCode: 404, status: 'Bad Request', message: 'Please check the request body' };
-const NOT_FOUND_MSG = (id) => { return { statusCode: 404, status: 'Not Found', message: `Not Found item with id: ${id}` } };
+const BAD_REQUEST_MSG = JSON.stringify({ statusCode: 400, status: 'Bad Request', message: 'Please check the request body' });
+const NOT_FOUND_MSG = (id) => { return JSON.stringify({ statusCode: 404, status: 'Not Found', message: `Not Found item with id: ${id}` } )};
 const checkSimpleBody = (req) => { return req.body.description && req.body.checked != undefined }
 const checkCompleteBody = (req) => { return req.body.id && req.body.description && req.body.checked != undefined }
 
 let items = [];
+/* let items = [{ "id": 1, "description": "Leche", "checked": false },
+{ "id": 2, "description": "Pan", "checked": true }
+]; */
 
 exports.get_items = (req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -13,11 +16,12 @@ exports.get_items = (req, res) => {
 }
 
 exports.get_item_by_id = (req, res) => {
-    let item = items.filter((obj) => {
-        return obj.id == req.params.id;
+    let item = undefined;
+    items.map((obj) => {
+        item =  (obj.id == req.params.id) ? obj : item;
     });
     res.writeHead((item) ? 200 : 404, { 'Content-Type': 'application/json' });
-    res.end((item) ? JSON.stringify(item[0]) : NOT_FOUND_MSG(req.params.id));
+    res.end((item) ? JSON.stringify(item) : NOT_FOUND_MSG(req.params.id));
 }
 
 exports.post_item = (req, res) => {

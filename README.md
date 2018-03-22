@@ -25,7 +25,9 @@ In our case we will show BDD Testing with Mocha & Chai as functional system test
 
 - Mocha.js: Javascript test framework running on Node.js and in the browser and easing us making asynchronous testing (
 https://mochajs.org/)
+
 - Chai: BDD / TDD assertion library for [Node.js](http://nodejs.org/) and the browser that can be delightfully paired with any javascript testing framework (http://www.chaijs.com/).
+
 - Artillery: Modern, powerful & easy-to-use load testing toolkit. Use it to ship  scalable applications that stay performant  _&_  resilient  under high load (https://artillery.io).
 
 ## API Docs
@@ -45,10 +47,7 @@ Request:
 
 Response Example:
 - Status: 200 OK
-- Body: [ 
-			{"id":1,"description":"Leche","checked":false},
-		    {"id":2,"description":"Pan","checked":true} 
-	    ]
+- Body: [{"id":1,"description":"Leche","checked":false},{"id":2,"description":"Pan","checked":true}]
 
 
 ------------------------------------------------------------------
@@ -105,19 +104,19 @@ Error Responses:
 (400)
 - Status: 400 Bad Request
 - Body: {
-		    "statusCode": 400,
-		    "status": "Bad Request",
-		    "message": "Please check the request body"
-		} 
+	"statusCode": 400,
+	"status": "Bad Request",
+	"message": "Please check the request body"
+} 
 
 
 (404)
 - Status: 404 Not Found
 - Body: {
-		    "statusCode": 404,
-		    "status": "Not Found",
-		    "message": "Not Found item with id: {:id}"
-		}
+    "statusCode": 404,
+	"status": "Not Found",
+	"message": "Not Found item with id: {:id}"
+}
 ```
 
 ## Functional System Test
@@ -341,7 +340,7 @@ Report @ 14:58:23(-0400) 2018-03-21
 
 
 
-final report exmple: 
+final report example: 
 
 ```txt
     All virtual users finished

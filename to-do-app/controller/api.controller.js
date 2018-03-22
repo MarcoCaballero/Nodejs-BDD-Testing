@@ -6,9 +6,6 @@ const checkSimpleBody = (req) => { return req.body.description && req.body.check
 const checkCompleteBody = (req) => { return req.body.id && req.body.description && req.body.checked != undefined }
 
 let items = [];
-/* let items = [{ "id": 1, "description": "Leche", "checked": false },
-{ "id": 2, "description": "Pan", "checked": true }
-]; */
 
 exports.get_items = (req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' });

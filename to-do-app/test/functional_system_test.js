@@ -122,6 +122,26 @@ describe('To-Do Items App BDD Testing with \'expect\' ', () => {
         });
     });
 
+    describe('- Given an array with no items \n    - When \'DELETE /items/1\' is launched', () => {
+        before(() => {
+            errorItem = {
+                "statusCode": 404,
+                "status": "Not Found",
+                "message": "Not Found item with id: 1"
+            }
+        });
+        it('Should return an status:404 and return it as JSON Object', (done) => {
+            chai.request(BASE_URL)
+                .delete('/items/1')
+                .end((err, res) => {
+                    expect(res).to.have.status(404);
+                    expect(res).to.be.json;
+                    expect(res.body).to.deep.equal(errorItem);
+                    done();
+                });
+        });
+    });
+
     describe('- Given an empty array of items \n    - When \'GET /items\' is launched', () => {
         it('Then Should return an empty array of items (Should assertions version)', (done) => {
             chai.request(BASE_URL)
@@ -188,7 +208,7 @@ describe('To-Do Items App BDD Testing with \'expect\' ', () => {
     });
 
 
-    describe('- Given an array with 2 items\n  - When \'PUT /items/2\' is launched with a bad body request', () => {
+    describe('- Given an array with 2 items\n    - When \'PUT /items/2\' is launched with a bad body request', () => {
         before(() => {   
             errorItem = {
                 "statusCode": 400,

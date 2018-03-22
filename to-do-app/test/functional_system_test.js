@@ -134,6 +134,87 @@ describe('To-Do Items App BDD Testing with \'expect\' ', () => {
         });
     });
 
+
+    
+    describe('- Given an empty array of items\n    - When \'GET /items/10\' is launched', () => {
+        before(() => {
+            errorItem = {
+                "statusCode": 404,
+                "status": "Not Found",
+                "message": "Not Found item with id: 10"
+            }
+        });
+        it('Should return an error with statusCode:404 and return it as JSON Object', (done) => {
+            chai.request(BASE_URL)
+                .get('/items/10')
+                .end((err, res) => {
+                    expect(res).to.have.status(404);
+                    expect(res).to.be.json;
+                    expect(res.body).to.deep.equal(errorItem);
+                    done();
+                });
+        });
+    });
+
+    describe('- Given an array with 2 items\n    - When \'GET /items/2\' is launched', () => {
+        before(() => {
+            chai.request(BASE_URL)
+                .post('/items')
+                .send({
+                    "description": "Milk",
+                    "checked": false
+                }).end();
+            chai.request(BASE_URL)
+                .post('/items')
+                .send({
+                    "description": "Coffe",
+                    "checked": false
+                }).end();
+        });
+        it('Should return item with id:2 and return it as JSON Object', (done) => {
+            chai.request(BASE_URL)
+                .get('/items/2')
+                .end((err, res) => {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.json;
+                    expect(res.body).to.be.an('object').and.to.deep.equal({
+                        "id": 2,
+                        "description": "Coffe",
+                        "checked": false
+                    });
+                    done();
+                });
+        });
+    });
+
+
+    describe('- Given an array with 2 items\n  - When \'PUT /items/2\' is launched with a bad body request', () => {
+        before(() => {   
+            errorItem = {
+                "statusCode": 400,
+                "status": "Bad Request",
+                "message": "Please check the request body"
+            }
+        });
+        it('Should return an error with statusCode:400 and return it as JSON Object', (done) => {
+            chai.request(BASE_URL)
+                .put('/items/2')
+                .send({
+                    "description": "Coffe",
+                }).end((err, res) => {
+                    expect(res).to.have.status(400);
+                    expect(res).to.be.json;
+                    expect(res.body).to.deep.equal(errorItem);
+                    done();
+                });
+        });
+    });
+    /* {
+    "statusCode": 400,
+    "status": "Bad Request",
+    "message": "Please check the request body"
+}
+    } */
     /* @AfterAll */
     after((done) => {
         server.close();

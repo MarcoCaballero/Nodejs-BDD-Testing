@@ -34,7 +34,7 @@ exports.put_item = (req, res) => {
         items = items.map((item) => {
             return (item.id == req.params.id) ? newItem : item;
         });
-        res.writeHead((newItem) ? 200 : 400, { 'Content-Type': 'application/json' });
+        res.writeHead((newItem) ? 200 : 404, { 'Content-Type': 'application/json' });
         res.end((newItem) ? JSON.stringify(newItem) : NOT_FOUND_MSG(req.params.id));
     } else {
         res.writeHead(400, { 'Content-Type': 'application/json' });
